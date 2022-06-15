@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import LocalFileRead from './fileRead.js'
 
 class Test extends React.Component {
 
@@ -9,10 +9,11 @@ class Test extends React.Component {
     <div className="App">
         <header className="App-header">
             {this.props.navBar}
-               <p>
-               We are on the test page!
-               </p>
+           <div>
+            <LocalFileRead wantedFile="./json/capa-system"/>
+           </div>
            </header>
+
     </div>
 
     )
