@@ -10,7 +10,7 @@ class Test extends React.Component {
         <header className="App-header">
             {this.props.navBar}
            <div>
-            <LocalFileRead wantedFile="./json/capa-system"/>
+            <LocalFileRead />
            </div>
            </header>
 

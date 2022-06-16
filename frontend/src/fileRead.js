@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-
+import './fileRead.css';
 //default initalization 
-var x = [""]
+var x = []
 
 
 class LocalFileRead extends Component {
@@ -19,22 +19,26 @@ class LocalFileRead extends Component {
       
     _handleChange = (event) => {
 
-        fetch('http://localhost:3001/events')
-        .then(response => response.json())
-        .then(data =>
-         //  this.setState({
-        //       value: data
-          //})
-          console.log(data)
-        );
 
+        var url = 'http://localhost:3001/events';
+        fetch(url, {
+            headers: {
+                'namespace': event.target.value
+            },
+        }).then(response => response.json())
+        .then(data =>
+           this.setState({
+               json: data[0]
+          })
+
+        );
       }
 
 
 
     render() {
     
-    
+        
         //Mega large constant list with all of my beautiful namespaces, maybe do this dynamic in the future but a long list works for now
         const all = [
             {
@@ -42,12 +46,20 @@ class LocalFileRead extends Component {
             },
             {
                 namespace: 'kube-system'
+            },
+            {
+                namespace: 'default'
             }
         ]
 
 
-   
 
+        const listedItems = this.state.json.map((d) => 
+            <div id=""key={d.name}>
+                {d.involvedObject.name} 
+                {d.message}
+            </div>)
+        console.log(this.state.json)
         return (
         <div >
             <select onChange={this._handleChange} value={this.props.namespace}>
@@ -56,10 +68,9 @@ class LocalFileRead extends Component {
                 ))}
 
             </select>
-            <div>
+            <div className="test">
                         
-                {this.state.json}
-
+                {listedItems}
             </div>
 
 
