@@ -91,8 +91,4 @@ class Buttons extends React.Component {
   }
 }
 
-
-
-
-
 export default App;

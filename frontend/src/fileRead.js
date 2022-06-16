@@ -1,53 +1,67 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 
-
+//default initalization 
+var x = [""]
 
 
 class LocalFileRead extends Component {
 
     constructor(props) {
+        
         super(props);
         this.state = {
-            value: 'kube-system'
+            value: 'kube-system',
+            json: []
         }
     }
 
 
+      
     _handleChange = (event) => {
-        this.setState({ value: event.target.value })
-        console.log(event.target.value)
+
+        fetch('http://localhost:3001/events')
+        .then(response => response.json())
+        .then(data =>
+         //  this.setState({
+        //       value: data
+          //})
+          console.log(data)
+        );
+
       }
 
+
+
     render() {
+    
+    
+        //Mega large constant list with all of my beautiful namespaces, maybe do this dynamic in the future but a long list works for now
+        const all = [
+            {
+               namespace: 'capa-system' 
+            },
+            {
+                namespace: 'kube-system'
+            }
+        ]
 
-        //each top level file will have an associated name so we import all['kube-system'] in our div
-        const context = require.context('./json', true, /.json$/);
-        const all = {};
-        context.keys().forEach((key: any) => {
-        const fileName = key.replace('./', '');
-        const resource = require(`./json/${fileName}`);
-        const namespace = fileName.replace('.json', '');
-         all[namespace] = JSON.parse(JSON.stringify(resource));
- 
-        });
-        
 
+   
 
         return (
         <div >
-            <select onChange={this._handleChange} value={this.state.value}>
-                {Object.keys(all).map(name => (
-                <option key={name} value={name}>
-                    {name}
-                </option>
-
+            <select onChange={this._handleChange} value={this.props.namespace}>
+                {all.map((item) => (
+                    <option key={item.namespace}>{item.namespace}</option>
                 ))}
-             
 
             </select>
+            <div>
+                        
+                {this.state.json}
 
+            </div>
 
-            {all['kube-system'].map((record, i) => <div>{record.metadata.name} - {record.status.phase} </div>)}
 
         </div>
         );
