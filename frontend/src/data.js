@@ -1,19 +1,18 @@
 import React from 'react';
-import './App.css';
+import './css/data.css';
 import LocalFileRead from './fileRead.js'
 
-class Test extends React.Component {
+class DataBody extends React.Component {
 
     render(){
     return (
-    <div className="App">
-        <header className="App-header">
+    <div className="Test">
+        <header className="">
             {this.props.navBar}
            <div>
             <LocalFileRead />
            </div>
            </header>
-
     </div>
 
     )
@@ -21,6 +20,6 @@ class Test extends React.Component {
 }
 
 
-export default Test;
+export default DataBody;
 
 

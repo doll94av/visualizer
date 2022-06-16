@@ -1,6 +1,6 @@
 import logo from './logo.svg';
-import './App.css';
-import Test from './test'
+import './css/App.css';
+import DataBody from './data'
 import React from 'react';
 
 
@@ -35,7 +35,7 @@ class MainBody extends React.Component {
     //construct buttons
     var buttonList = ["Home", "Data"];
     for(var i = 0; i < buttonList.length; i++) {
-      buttonList[i] = <Buttons name={buttonList[i]} buttonClick={this.onButtonClick.bind(this)} class="welcomeButton"/>
+      buttonList[i] = <Buttons name={buttonList[i]} buttonClick={this.onButtonClick.bind(this)} className="bn3637 bn37"/>
     }
 
     const listedButtons = buttonList.map((button) =>
@@ -47,11 +47,14 @@ class MainBody extends React.Component {
       return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />    
-          {listedButtons}
+          <h1>
+          Support Bundle Visualizer
+          </h1>
           <p>
-            We are onasd the test page!
+          To get going, click onto the data tab and sort through the relevant namespaces, hopefully this is easier to read than JSON in notepad++
           </p>
+          {listedButtons}
+
         </header>
       </div>
       )
@@ -59,7 +62,7 @@ class MainBody extends React.Component {
 
     if(this.state.desiredPage === "Data") {
       return (
-        <Test navBar={listedButtons} />
+        <DataBody navBar={listedButtons} />
       )
     }
   
@@ -86,7 +89,7 @@ class Buttons extends React.Component {
 
   render() {
     return (
-      <a href="/#" name={this.props.name} onClick={this.props.buttonClick} class={this.props.class}>{this.props.name}</a>
+      <a href="/#" name={this.props.name} onClick={this.props.buttonClick} className={this.props.className}>{this.props.name}</a>
     );
   }
 }
