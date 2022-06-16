@@ -31,6 +31,8 @@ class LocalFileRead extends Component {
  
         });
         
+
+
         return (
         <div >
             <select onChange={this._handleChange} value={this.state.value}>
@@ -43,7 +45,8 @@ class LocalFileRead extends Component {
              
 
             </select>
-            {this.state.value}
+
+
             {all['kube-system'].map((record, i) => <div>{record.metadata.name} - {record.status.phase} </div>)}
 
         </div>
