@@ -58,11 +58,7 @@ class LocalFileRead extends Component {
                 </tr>
             )
 
-        //const listedItems = this.state.json.map((d) => 
-        //    <div id=""key={d.name}>
-        //        {d.involvedObject.name}--
-        //        {d.message}
-        //    </div>)
+
         
         return (
         <div >

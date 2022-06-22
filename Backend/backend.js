@@ -67,6 +67,38 @@ app.listen(PORT, () => {
 
   });
 
+  app.get("/pods", (req, res) => {
+    res.set('Access-Control-Allow-Origin', allowControlOrigin);
+  
+    //load in all JSON from a directory, specifically this will be events but in the future we will want to figure out a way to dynamically set the dir
+  
+    const jsonsInDir = fs.readdirSync('./bundle/support-bundle-2022-04-22T15_39_48/cluster-resources/pods').filter(file => path.extname(file) === '.json');
+    var jsonResponse = [];
+    var parsedFileNames = [];
+    jsonsInDir.forEach(file => {
+      const fileData = fs.readFileSync(path.join('./bundle/support-bundle-2022-04-22T15_39_48/cluster-resources/pods/', file));
+      const json = JSON.parse(fileData.toString());
+      
+      //save the json and parsed filenames into arrays to map together later -- im sure this could be done all at once but my brain is small and I dont feel like optimizing right now
+
+      //old stuff
+      //parsedFileNames.push(path.parse(file).name)
+      //jsonResponse.push(json)
+
+      if(path.parse(file).name == req.headers.namespace){
+        console.log(json)
+        jsonResponse.push(json)
+      }
+    });
+
+
+    res.send(jsonResponse)
+    //send arrays off to get mapped together and response with JSON since we cannot directly send the map
+    //old stuff
+    //var joinedMap = createMappedArray(parsedFileNames, jsonResponse)
+    //res.send(JSON.stringify([...joinedMap]));
+
+  });
 
 //map the arrays together
 const createMappedArray = (key, value) => {

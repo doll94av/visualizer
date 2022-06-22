@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import './css/App.css';
-import DataBody from './data'
+import Events from './event'
 import React from 'react';
-
+import Pods  from './pods'
 
 
 //main logic function
@@ -33,7 +32,7 @@ class MainBody extends React.Component {
   render() {
 
     //construct buttons
-    var buttonList = ["Home", "Data"];
+    var buttonList = ["Home", "Events", "Pods"];
     for(var i = 0; i < buttonList.length; i++) {
       buttonList[i] = <Buttons name={buttonList[i]} buttonClick={this.onButtonClick.bind(this)} className="bn3637 bn37"/>
     }
@@ -60,9 +59,15 @@ class MainBody extends React.Component {
       )
     }
 
-    if(this.state.desiredPage === "Data") {
+    if(this.state.desiredPage === "Events") {
       return (
-        <DataBody navBar={listedButtons} />
+        <Events navBar={listedButtons} />
+      )
+    }
+
+    if(this.state.desiredPage === "Pods") {
+      return (
+        <Pods navBar={listedButtons} />
       )
     }
   

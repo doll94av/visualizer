@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/data.css';
-import LocalFileRead from './fileRead.js'
+import EventBody from './eventBody.js'
 
 class DataBody extends React.Component {
 
@@ -10,7 +10,7 @@ class DataBody extends React.Component {
         <header className="">
             {this.props.navBar}
            <div>
-            <LocalFileRead />
+            <EventBody />
            </div>
            </header>
     </div>
